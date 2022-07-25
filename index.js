@@ -31,7 +31,17 @@ app.get("/register-post", (req, res) => {
 })
 
 app.post("/save-post", (req, res) => {
-    console.log(req.body);
+    const { titulo, date, texto} = req.body
+    const data = JSON.parse(fs.readFileSync("./store/logs.json"));
+
+    data.push({
+        titulo,
+        date,
+        texto
+    })
+
+    const postLog = JSON.stringify(data)
+    fs.writeFileSync("./store/logs.json",postLog)
     res.redirect("/register-post?sucess=1")
 })
 

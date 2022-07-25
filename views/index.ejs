@@ -5,11 +5,13 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-    <div>
+    <div class="container">
         <% logs.forEach(element => { %>
-         <h1><%= element.titulo %> </h1>
-         <p><%= element.texto %> </p>
-         <p><%= element.date %> </p>
+            <div class="posts">
+                <h1 class="titulo"><%= element.titulo %> </h1>
+                <p class="texto"><%= element.texto %> </p>
+                <p class="data"><%= element.date %> </p>
+            </div>
         <% }) %>
     </div>
     <%- include("partials/footer.ejs") %>

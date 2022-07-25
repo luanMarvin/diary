@@ -5,18 +5,18 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-    <div>
+    <div class="formulario">
         <form action="/save-post" method="post">
-            <div><input type="text" name="titulo"></div>
-            <div><input type="date" name="date"></div>
-            <div><textarea name="texto" id="" cols="30" rows="10"></textarea></div>
+            <div><input type="text" class="tituloForm" name="titulo" placeholder="Insira o titulo do registro."></div>
+            <div><input type="date" class="dataForm" name="date"></div>
+            <div><textarea name="texto" placeholder="Insira o texto do registro." class="textoForm" cols="50" rows="10"></textarea></div>
             <button type="submit">Registrar</button>
+            <div>
+                <% if(post_register_status) { %>
+                    <p>Registro Adicionado</p>
+                <% } %>
+            </div>
         </form>
-        <div>
-        <% if (post_register_status) { %>
-            <p>Registro Adicionado</p>
-        <% } %>
-        </div>
     </div>
     <%- include("partials/footer.ejs") %>
     <script src="/js/main.js"></script>
