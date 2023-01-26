@@ -5,17 +5,15 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-    <div class="formulario">
         <form action="/save-post" method="post">
-            <div><input type="text" class="tituloForm" name="titulo" placeholder="Insira o titulo do registro."></div>
-            <div><input type="date" class="dataForm" name="date"></div>
-            <div><textarea name="texto" placeholder="Insira o texto do registro." class="textoForm" cols="50" rows="10"></textarea></div>
+            <input type="text" class="tituloForm" name="titulo" placeholder="Insira o titulo do registro.">
+            <textarea name="texto" placeholder="Insira o texto do registro." class="textoForm" cols="50" rows="10"></textarea>
+            <input type="date" class="dataForm" name="date">
             <button type="submit">Registrar</button>
             <div>
                 <% if(post_register_status) { %>
                     <p>Registro Adicionado</p>
                 <% } %>
-            </div>
         </form>
     </div>
     <%- include("partials/footer.ejs") %>

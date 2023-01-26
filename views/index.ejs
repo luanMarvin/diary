@@ -8,9 +8,11 @@
     <div class="container">
         <% logs.forEach(element => { %>
             <div class="posts">
-                <h1 class="titulo"><%= element.titulo %> </h1>
-                <p class="texto"><%= element.texto %> </p>
-                <p class="data"><%= element.date %> </p>
+                <div class="post-content">
+                    <h1 class="titulo"><%= element.titulo %> </h1>
+                    <p class="texto"><%= element.texto %> </p>
+                    <p class="data"><%= element.date %> </p>
+                </div>
             </div>
         <% }) %>
     </div>

@@ -4,17 +4,19 @@ const fs = require("fs");
 
 const app = express();
 
-// //
 app.set("view engine", "ejs");
-
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
-const data = JSON.parse(fs.readFileSync("./store/logs.json"));
+function readData(){
+    let data = JSON.parse(fs.readFileSync("./store/logs.json"));
+    return data
+}
 /////
 
 //Routes +-----------
 app.get("/", (req, res) => {
+    data = readData();
     res.render("index", {
         title: "Diario Node - Registros",
         logs: data
