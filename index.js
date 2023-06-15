@@ -8,20 +8,33 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-function readData(){
-    let data = JSON.parse(fs.readFileSync("./store/logs.json"));
-    return data
-}
-/////
+function readData(){function readData() {
+    let data = [];
 
-//Routes +-----------
+    try {
+        const fileContent = fs.readFileSync("./store/logs.json", "utf8");
+        data = JSON.parse(fileContent);
+    } catch (error) {
+        console.error("Erro ao ler o arquivo logs.json:", error);
+    }
+
+    return data;
+}
+
+}
+
+//Rotas
 app.get("/", (req, res) => {
-    data = readData();
+    let data = readData();
+
+    if (!data) { data = []; }
+
     res.render("index", {
         title: "Diario Node - Registros",
         logs: data
-    })
-})
+    });
+});
+
 
 app.get("/register-post", (req, res) => {
     const { sucess } = req.query
@@ -47,11 +60,10 @@ app.post("/save-post", (req, res) => {
     res.redirect("/register-post?sucess=1")
 })
 
-//Errors +-----------
+//Rota de Erro
 app.use((req,res) => {
     res.send("Pagina Não Encontrada")
 })
 
-//Port Set +----------
-const port = process.env.PORT || 8080;
+const port = 8080;
 app.listen(port, () => console.log(`Server on Port: ${port}`));
